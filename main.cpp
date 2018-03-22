@@ -1,10 +1,18 @@
 #include <iostream>
 using namespace std;
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 int main() {
-    int i = 0;
-    for(i = 0; i < 4;i++){
-        cout<< i <<endl;
-    }
-    cout << "Hello, World!" << endl;
+    ListNode l = ListNode(1);
+    ListNode* a = &l;
+    a->val = 1;
+    if(a->next)
+        cout<<"a";
+    else
+        cout<<"b";
     return 0;
 }
