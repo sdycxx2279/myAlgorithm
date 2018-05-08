@@ -2,7 +2,7 @@
 //@author Xiao Xu
 //@create 2018-05-08 15:33
 //3Sum Closest
-//注意调试后的连带反应
+//注意调试后的连带反应,初始化时随便以数组中三数之和初始化化即可，没必要写太复杂
 //
 
 #include <iostream>
