@@ -3,4 +3,4 @@ project(ClionsProject)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(ClionsProject 21.cpp)
+add_executable(ClionsProject 21.cpp 22.cpp 23.cpp)
