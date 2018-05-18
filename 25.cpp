@@ -11,19 +11,19 @@ using namespace std;
 struct ListNode {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 };
 
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
-        if(head == NULL || head->next == NULL || k == 1)
+        if(head == nullptr || head->next == nullptr || k == 1)
             return head;
         ListNode *pre = new ListNode(1);
         pre->next = head;
         ListNode *last, *nex, *now,*temp_pre;
         int nums = 0;
-        while(head != NULL){
+        while(head != nullptr){
             head = head->next;
             nums++;
         }
@@ -37,7 +37,7 @@ public:
                 temp_pre->next = now;
                 last->next = nex;
                 now = nex;
-                if(nex!=NULL)
+                if(nex != nullptr)
                     nex = nex->next;
             }
             temp_pre = last;
