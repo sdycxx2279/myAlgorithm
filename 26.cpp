@@ -13,12 +13,12 @@ using namespace std;
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums){
-        if(nums.size() == 0)
+        if(nums.empty())
             return 0;
         int length,last;
         length = 1;
         last = 0;
-        if(nums.size() == 0)
+        if(nums.empty())
             return 0;
         for(int i = 1; i < nums.size(); i++){
             if(nums[i] != nums[last]){
