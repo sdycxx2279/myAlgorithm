@@ -37,7 +37,7 @@ public:
             temp_map = words_map;
             bool succ = true;
             for(int j = i; j < i+length_sub;j+=length_word){
-                string temp_string  = s.substr(j, length_word);
+                string temp_string  = s.substr(static_cast<unsigned int>(j), static_cast<unsigned int>(length_word));
                 if(temp_map.find(temp_string) == temp_map.end()){
                     succ = false;
                     break;
@@ -58,8 +58,8 @@ public:
 int main() {
     Solution s;
     vector<string> str;
-    str.push_back("foo");
-    str.push_back("bar");
+    str.emplace_back("foo");
+    str.emplace_back("bar");
     vector<int> result = s.findSubstring("barfoothefoobarman", str);
     return 0;
 }
