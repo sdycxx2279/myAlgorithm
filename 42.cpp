@@ -1,52 +1,48 @@
 //
 //@author Xiao Xu
 //@create 2018-06-27 9:46
-//
-//
+//Trapping Rain Water
+//双指针,每一次循环，left一次性走到本次指定位置，right一次性走到本次指定位置，结束本次循环
+//忘记处理[]
 //
 
 #include <iostream>
 #include <vector>
-#include <stack>
+
 using namespace std;
 
 class Solution {
 public:
     int trap(vector<int>& height) {
-        int i = 0, length = height.size();
-        while(i < length && height[i] == 0 ){
-            i++;
-        }
-        return trapOne(height, i);
-    }
-
-    int trapOne(vector<int>& height,int i){
-        int begin, j, trap_size = 0, length = height.size();
-        stack<int> elevation;
-        if(i >= length - 1)
+        if(height.size() == 0)
             return 0;
-        begin = height[i];
-        for(j = i + 1; j < length; j++){
-            while(j < length - 1 && height[j] == height[j+1])
-                j++;
-            if(j == length - 1)
-                break;
-            begin = height[j];
-            if(height[j] < begin){
-                elevation.push(height[j]);
-            }else{
-                int low = begin > height[j] ? height[j] : begin;
-                while(!elevation.empty()){
-                    int now = elevation.top();
-                    elevation.pop();
-                    trap_size += (low - now);
+
+        int left = 1;
+        int right = height.size() - 2;
+        int result = 0;
+
+        int max_left = height[0];
+        int max_right = height[right+1];
+
+        while(left <= right){
+            if(max_left <= max_right){
+                if(max_left <= height[left]){
+                    max_left = height[left];
+                }else{
+                    result += (max_left - height[left]);
                 }
+                left++;
+            }else{
+                if(max_right <= height[right]){
+                    max_right = height[right];
+                }else{
+                    result += (max_right - height[right]);
+                }
+                right--;
             }
         }
-        if(elevation.empty() || j == i + 1)
-            return trap_size;
-        else
-            return trapOne(height, begin);
+
+        return result;
     }
 };
 
@@ -56,3 +52,16 @@ int main() {
     cout<<s.trap(nums);
     return 0;
 }
+
+/*
+ * 优秀代码思路
+ *  只有先下降后上升才能储水，所以要先找到第一个下降点"drop"，即（非严格）单调上升后首次下降的位置；
+ *    之后，每次都记录遇到"drop"之后最高的地方，有两种可能：
+ *      1 之后有比"drop"更高或持平的地方记为"raise"，
+ *      2 已知搜索到结束，之后都没有更高或持平的地方，那么找到记录的最高的地方记为raise；
+ *      这时水位高度为min(drop,raise)；计算其间的水量后，在raise之后寻找新的上升点"drop"
+ *      持续这一过程，直到找不到新的drop点了。
+ *
+
+ *
+ */
