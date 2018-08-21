@@ -2,7 +2,7 @@
 //@author Xiao Xu
 //@create 2018-08-16 22:53
 //Decode Ways
-//数字以0结尾时有问题
+//忘记当数字小于10时不能识别为两位数
 //
 
 #include <iostream>
