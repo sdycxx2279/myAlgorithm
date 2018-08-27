@@ -1,13 +1,13 @@
 //
 //@author Xiao Xu
-//@create 2018-08-20 21:35
-//
+//@create 2018-08-21 22:34
+//Permutations II
+//for循环中使用continue跳过不需要的迭代
 //
 
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
 using namespace std;
 
 class Solution {
@@ -20,26 +20,24 @@ public:
         return result;
     }
 
-    void getPermute( vector<vector<int>>& result, vector<int>& nums, int begin){
+    void getPermute( vector<vector<int>>& result, vector<int> nums, int begin){
         if(begin == nums.size())
             result.push_back(nums);
         else{
-            for(int i = 0; i < nums.size(); i++){
-                vector<int> new_nums = nums;
-                swap(new_nums[i], new_nums[begin]);
+            for(int i = begin; i < nums.size(); i++){
+                if(i != begin && nums[i] == nums[begin])
+                    continue;
+                swap(nums[i], nums[begin]);
 
-                getPermute(result, new_nums, begin + 1);
-                while(i < nums.size() && nums[i] == nums[i+1]){
-                    i++;
-                }
+                getPermute(result, nums, begin + 1);
             }
         }
     }
 };
 
-int main(){
+int main() {
     Solution s;
-    cout<<;
+    vector<int> nums = {1,2,1};
+    vector<vector<int>> result = s.permuteUnique(nums);
     return 0;
 }
-

@@ -1,4 +1,3 @@
-//
 //@author Xiao Xu
 //@create 2018-08-09 21:35
 //House Robber II
@@ -7,7 +6,6 @@
 
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -34,7 +32,6 @@ public:
 
 int main(){
     Solution s;
-    cout<<;
     return 0;
 }
 

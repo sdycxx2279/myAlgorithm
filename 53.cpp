@@ -29,8 +29,7 @@ public:
 };
 
 int main(){
-    Solution s;
-    cout<<;
+    //Solution s;
     return 0;
 }
 
