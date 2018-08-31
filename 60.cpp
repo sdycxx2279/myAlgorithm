@@ -2,7 +2,7 @@
 //@author Xiao Xu
 //@create 2018-08-30 22:22
 //Permutation Sequence
-//
+//算出每位应该是几更快
 //
 
 #include <iostream>
