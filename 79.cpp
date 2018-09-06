@@ -2,7 +2,7 @@
 //@author Xiao Xu
 //@create 2018-09-04 22:27
 //Word Search
-//
+//DFS算法，将board与word作为类的私有变量会节省大量空间，使用原生的board标识是否遍历过，在结束后复原可以节省大量新建数组的时间
 //
 
 #include <iostream>
