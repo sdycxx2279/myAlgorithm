@@ -2,7 +2,7 @@
 //@author Xiao Xu
 //@create 2018-09-14 15:32
 //Word Ladder
-//
+//简单bfs，根据层数求最短距离
 //
 
 #include <iostream>
@@ -14,55 +14,43 @@ using namespace std;
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        vector<bool> traverse(beginWord.size(), false);
+        vector<bool> traverse(wordList.size(), false);
+        queue<string> q;
+        q.push(beginWord);
+        int res = 2,level = 1, next_level = 0;
+        bool getRes = false;
 
-        return dfs(beginWord, endWord, wordList, traverse);
-    }
-
-    int bfs(string now, string endWord, vector<string>& wordList,vector<bool>& traverse){
-        stack<string> word_stack;
-        int length = 1;
-        word_stack.push(now);
-
-        while(!word_stack.empty() || !length){
-            length++;
-            now = word_stack.top();
-            word_stack.pop();
-
+        while(!q.empty() && !getRes){
+            if(!level){
+                level = next_level;
+                next_level = 0;
+                res++;
+                //cout<<res<<endl;
+            }
+            level--;
+            beginWord = q.front();
+            q.pop();
             for(int i = 0; i < wordList.size(); i++){
-                if(!traverse[i] && oneChanged(now, wordList[i])){
-                    if(wordList[i] == endWord)
-                        return  length;
+                if(!traverse[i] && oneChanged(wordList[i], beginWord)){
+                    if(wordList[i] == endWord){
+                        getRes = true;
+                        break;
+                    }
+                    //cout<<wordList[i]<<" ";
                     traverse[i] = true;
-                    word_stack.push(wordList[i]);
+                    q.push(wordList[i]);
+                    next_level++;
                 }
             }
         }
 
-        return 0;
+        return getRes ? res : 0;
     }
 
-    int dfs(string now, string endWord, vector<string>& wordList,vector<bool>& traverse){
-        if(now == endWord)
-            return 1;
-        int length = 0;
-        for(int i = 0; i < wordList.size(); i++){
-            if(!traverse[i] && oneChanged(now, wordList[i])){
-                traverse[i] = true;
-                int now_length = dfs(wordList[i], endWord, wordList, traverse);
-                if(length == 0 && now_length != 0){
-                    length = now_length + 1;
-                }else if(length != 0 && now_length != 0){
-                    length = min(length, now_length + 1);
-                }
-                traverse[i] = false;
-            }
-        }
-        return length;
-    }
+
     bool oneChanged(string a, string b){
         int changed = 0;
-        for(int i = 0; i < a.size(); i++){
+        for(int i = 0; i < a.size() && changed <= 1; i++){
             if(a[i] != b[i])
                 changed++;
         }
