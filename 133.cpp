@@ -2,7 +2,7 @@
 //@author Xiao Xu
 //@create 2019-04-14 15:32
 //Clone Graph
-//图的复制，简单的bfs问题，注意使用map标注已有节点避免节点重复复制
+//图的复制，简单的dfs问题，注意使用map标注已有节点避免节点重复复制
 
 #include <iostream>
 #include <vector>
