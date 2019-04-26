@@ -7,6 +7,9 @@
 
 #include<iostream>
 #include<vector>
+#include <queue>
+#include <algorithm>
+#include <stack>
 using namespace std;
 
 struct TreeNode {
